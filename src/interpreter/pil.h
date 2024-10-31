@@ -100,7 +100,9 @@ struct Lexer {
     Indicator indicator;
     Line line;
     Row row;
-    char ptr;
+    char ch;
 };
+
+const char *token_type_to_string(enum TokenKind kind);
 
 #endif
