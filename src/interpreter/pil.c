@@ -3,9 +3,8 @@
 static File pil_stdout;
 static File pil_stderr;
 static File pil_stdin;
-static PilContext  pil_context;
-static uint8_t     pil_context_log_id = PIL_DEFAULT_LOG_STREAM_ID;
-
+static PilContext pil_context;
+static uint8_t pil_context_log_id = PIL_DEFAULT_LOG_STREAM_ID;
 
 static void pil_log_debug(const char *msg)
 {
