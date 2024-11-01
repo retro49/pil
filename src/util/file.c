@@ -60,9 +60,7 @@ struct File *read_file(const char *fullpath)
 
     fread(buffer, sizeof(char), file->size, __file);
     file->content = buffer;
-
-    if (__file != NULL)
-        fclose(__file);
+    file->__file = __file;
 
     return file;
 
@@ -82,6 +80,9 @@ void  close_file(struct File *file)
 {
     if (file == NULL)
         return;
+
+    if (file->__file != NULL)
+        fclose(file->__file);
 
     if (file->content != NULL)
         free((char*)file->content);

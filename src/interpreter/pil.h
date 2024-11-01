@@ -4,14 +4,37 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 #include "../util/panic.h"
 #include "../util/file.h"
+#include "../util/log.h"
 #include "../util/unreachable.h"
 
-typedef uint64_t Indicator;
-typedef uint64_t Line;
-typedef uint64_t Row;
+typedef struct PilContext PilContext;
+
+typedef enum PilState {
+    PIL_STATE_INIT,
+    PIL_STATE_LEX,
+    PIL_STATE_PARSING,
+    PIL_STATE_DEINIT,
+}PilState;
+
+struct PilContext {
+    PilState state;
+    Log logger;
+    File logfile;
+};
+
+void pil_context_init();
+void pil_context_deinit();
+void pil_context_set_log_file(const char *p);
+
+#define PIL_DEFAULT_LOG_STREAM          stderr
+#define PIL_DEFAULT_LOG_STREAM_ID       0
+#define PIL_NON_DEFAULT_LOG_STREAM_ID   1
+
+void pil_log(LogLevel, const char *);
 
 enum TokenKind {
     TOKEN_EOF,
@@ -82,6 +105,14 @@ enum TokenKind {
     TOKEN_IDENTIFIER,
 };
 
+typedef uint64_t Indicator;
+typedef uint64_t Line;
+typedef uint64_t Row;
+
+typedef struct SourceSpan SourceSpan;
+typedef struct Token Token;
+typedef struct Lexer Lexer;
+
 struct SourceSpan {
     const char *str;
     uint32_t from;
@@ -104,5 +135,8 @@ struct Lexer {
 };
 
 const char *token_type_to_string(enum TokenKind kind);
+
+struct Lexer *lexer_new(File *f);
+void lexer_free(struct Lexer *lxr);
 
 #endif

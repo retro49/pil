@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-struct File {
+typedef struct File {
+    FILE *__file;
     const char *filepath;
     const char *content;
     uint64_t size;
-};
+}File;
 
 struct File *read_file(const char *fullpath);
 void close_file(struct File *file);
-
 #endif
