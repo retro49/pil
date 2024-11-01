@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <time.h>
 
 #include "../util/panic.h"
@@ -107,7 +108,7 @@ enum TokenKind {
 
 typedef uint64_t Indicator;
 typedef uint64_t Line;
-typedef uint64_t Row;
+typedef uint64_t Column;
 
 typedef struct SourceSpan SourceSpan;
 typedef struct Token Token;
@@ -130,13 +131,14 @@ struct Lexer {
     File *file;
     Indicator indicator;
     Line line;
-    Row row;
+    Column column;
     char ch;
 };
 
 const char *token_type_to_string(enum TokenKind kind);
 
-struct Lexer *lexer_new(File *f);
-void lexer_free(struct Lexer *lxr);
+Lexer *lexer_new(File *f);
+Token lexer_next(Lexer *lxr);
+void lexer_free(Lexer *lxr);
 
 #endif

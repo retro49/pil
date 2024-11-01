@@ -1,42 +1,14 @@
 #include "pil.h"
 
+static PilContext pil_context;
 static File pil_stdout;
 static File pil_stderr;
 static File pil_stdin;
-static PilContext pil_context;
 static uint8_t pil_context_log_id = PIL_DEFAULT_LOG_STREAM_ID;
-
-static void pil_log_debug(const char *msg)
-{
-    if (msg == NULL)
-        return;
-    time_t t = time(NULL);
-    struct tm *lt = localtime(&t);
-    fprintf(pil_context.logfile.__file, "%4d/%02d/%02d %02d:%02d:%02d [debug] %s\n", lt->tm_year + 1900, lt->tm_mon, lt->tm_mday, lt->tm_hour, lt->tm_min, lt->tm_sec, msg);
-}
-
-static void pil_log_warn(const char *msg)
-{
-    if (msg == NULL)
-        return;
-
-    time_t t = time(NULL);
-    struct tm *lt = localtime(&t);
-    fprintf(pil_context.logfile.__file, "%4d/%02d/%02d %02d:%02d:%02d [warn]  %s\n", lt->tm_year + 1900, lt->tm_mon, lt->tm_mday, lt->tm_hour, lt->tm_min, lt->tm_sec, msg);
-}
-
-static void pil_log_err(const char *msg)
-{
-    if (msg == NULL)
-        return;
-
-    time_t t = time(NULL);
-    struct tm *lt = localtime(&t);
-    fprintf(pil_context.logfile.__file, "%4d/%02d/%02d %02d:%02d:%02d [error] %s\n", lt->tm_year + 1900, lt->tm_mon, lt->tm_mday, lt->tm_hour, lt->tm_min, lt->tm_sec, msg);
-}
 
 void pil_context_init()
 {
+
     File psout =  {.__file = stdout, .filepath= NULL, .content= NULL, .size = 0};
     pil_stdout = psout;
     File pserr = {.__file = stderr, .filepath = NULL, .content = NULL, .size = 0};
@@ -50,16 +22,17 @@ void pil_context_init()
     pil_context.logger.debug = pil_log_debug;
     pil_context.logger.warn = pil_log_warn;
     pil_context.logger.error = pil_log_err;
+
 }
 
 void pil_log(LogLevel lvl, const char *msg)
 {
     if (lvl == LOG_DEBUG) {
-        pil_context.logger.debug(msg);
+        pil_context.logger.debug(pil_context.logfile, msg);
     } else if (lvl == LOG_WARN) {
-        pil_context.logger.warn(msg);
+        pil_context.logger.warn(pil_context.logfile, msg);
     } else if (lvl == LOG_ERR) {
-        pil_context.logger.error(msg);
+        pil_context.logger.error(pil_context.logfile, msg);
     } else {
         UNREACHABLE("UNKOWN LOGGING LEVEL")
     }

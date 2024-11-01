@@ -13,6 +13,7 @@ add_library(
 
     # util
     ${PIL_UTIL_SRC}/file.c      ${PIL_UTIL_SRC}/file.h
+    ${PIL_UTIL_SRC}/log.c      ${PIL_UTIL_SRC}/log.h
     ${PIL_UTIL_SRC}/panic.h     ${PIL_UTIL_SRC}/unreachable.h
 )
 
