@@ -23,4 +23,11 @@ void pil_log_debug(File, const char *msg);
 void pil_log_warn(File, const char *msg);
 void pil_log_err(File, const char *msg);
 
+#define PIL_INFO(_FMT, ...)\
+    do {\
+        printf("[INFO] "); \
+        printf(_FMT, ##__VA_ARGS__); \
+        printf("\n");\
+    }while(0);
+
 #endif

@@ -8,12 +8,11 @@ static uint8_t pil_context_log_id = PIL_DEFAULT_LOG_STREAM_ID;
 
 void pil_context_init()
 {
-
-    File psout =  {.__file = stdout, .filepath= NULL, .content= NULL, .size = 0};
+    File psout =  (File){.__file = stdout, .filepath= NULL, .content= NULL, .size = 0};
     pil_stdout = psout;
-    File pserr = {.__file = stderr, .filepath = NULL, .content = NULL, .size = 0};
+    File pserr = (File){.__file = stderr, .filepath = NULL, .content = NULL, .size = 0};
     pil_stderr = pserr;
-    File psin = {.__file = stdin, .filepath = NULL, .content = NULL, .size = 0};
+    File psin = (File){.__file = stdin, .filepath = NULL, .content = NULL, .size = 0};
     pil_stdin = psin;
 
     pil_context_log_id = PIL_DEFAULT_LOG_STREAM_ID;
@@ -22,7 +21,6 @@ void pil_context_init()
     pil_context.logger.debug = pil_log_debug;
     pil_context.logger.warn = pil_log_warn;
     pil_context.logger.error = pil_log_err;
-
 }
 
 void pil_log(LogLevel lvl, const char *msg)
