@@ -47,6 +47,7 @@ typedef uint64_t Column;
 typedef struct SourceSpan SourceSpan;
 typedef struct Token Token;
 typedef struct Lexer Lexer;
+typedef struct TokenData TokenData;
 
 struct SourceSpan {
     const char *str;
@@ -77,7 +78,7 @@ struct Lexer {
     Column column;
     char ch;
     Token token;
-    struct TokenData data;
+    TokenData data;
 };
 
 const char *token_type_to_string(enum TokenKind kind);

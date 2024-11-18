@@ -36,6 +36,8 @@ const char *token_type_to_string(enum TokenKind kind)
         RETURN_THIS(TOKEN_DOT,          ".");
         RETURN_THIS(TOKEN_QUESTION,     "?");
         RETURN_THIS(TOKEN_COMMA,        ",");
+        RETURN_THIS(TOKEN_SHL,          "<<");
+        RETURN_THIS(TOKEN_SHR,          ">>");
 
         RETURN_THIS(TOKEN_PROC,         "proc");
         RETURN_THIS(TOKEN_IF,           "if");
@@ -72,7 +74,11 @@ const char *token_type_to_string(enum TokenKind kind)
         RETURN_THIS(TOKEN_EQEQ,         "==");
         RETURN_THIS(TOKEN_NE,           "!=");
 
-        RETURN_THIS(TOKEN_IDENTIFIER, "IDENTIFIER");
+        RETURN_THIS(TOKEN_IDENTIFIER,   "IDENTIFIER");
+        RETURN_THIS(TOKEN_NUM_REAL,     "REAL");
+        RETURN_THIS(TOKEN_NUM_INTEGER,  "INTEGER");
+        RETURN_THIS(TOKEN_CHAR_LIT,     "CHAR_LITERAL");
+        RETURN_THIS(TOKEN_STRING_LIT,   "STRING_LITERAL");
     }
 
     UNREACHABLE("UNKOWN TOKEN KIND");

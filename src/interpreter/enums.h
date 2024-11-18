@@ -5,31 +5,30 @@ enum TokenKind {
     TOKEN_EOF,
     TOKEN_INVALID,
 
-    TOKEN_EXCL,         //  !
-    TOKEN_MOD,          //  %
-    TOKEN_CARET,        //  ^
-    TOKEN_AMP,          //  &
-    TOKEN_ASTERISK,     //  *
-    TOKEN_LEFT_PAR,     //  (
-    TOKEN_RIGHT_PAR,    //  )
-    TOKEN_MINUS,        //  -
-    TOKEN_PLUS,         //  +
-    TOKEN_EQ,           //  = 
-    TOKEN_LEFT_SQUARE,  //  [
-    TOKEN_RIGHT_SQUARE, //  ]
-    TOKEN_LEFT_CURLY,   //  {
-    TOKEN_RIGHT_CURLY,  //  }
-    TOKEN_QUOTE,        //  '
-    TOKEN_DQUOTE,       //  "
-    TOKEN_BAR,          //  |
-    TOKEN_SLASH,        //  /
-    TOKEN_SEMICOLON,    //  ;
-    TOKEN_LT,           //  <
-    TOKEN_GT,           //  >
-    TOKEN_DOT,          //  .
-    TOKEN_QUESTION,     //  ?
-    TOKEN_COMMA,        //  ,
-
+    TOKEN_EXCL,             //  !
+    TOKEN_MOD,              //  %
+    TOKEN_CARET,            //  ^
+    TOKEN_AMP,              //  &
+    TOKEN_ASTERISK,         //  *
+    TOKEN_LEFT_PAR,         //  (
+    TOKEN_RIGHT_PAR,        //  )
+    TOKEN_MINUS,            //  -
+    TOKEN_PLUS,             //  +
+    TOKEN_EQ,               //  = 
+    TOKEN_LEFT_SQUARE,      //  [
+    TOKEN_RIGHT_SQUARE,     //  ]
+    TOKEN_LEFT_CURLY,       //  {
+    TOKEN_RIGHT_CURLY,      //  }
+    TOKEN_QUOTE,            //  '
+    TOKEN_DQUOTE,           //  "
+    TOKEN_BAR,              //  |
+    TOKEN_SLASH,            //  /
+    TOKEN_SEMICOLON,        //  ;
+    TOKEN_LT,               //  <
+    TOKEN_GT,               //  >
+    TOKEN_DOT,              //  .
+    TOKEN_QUESTION,         //  ?
+    TOKEN_COMMA,            //  ,
 
     TOKEN_PROC = 256,       // proc
     TOKEN_IF,               // if
@@ -47,15 +46,17 @@ enum TokenKind {
     TOKEN_WHILE,            // while
 
     TOKEN_BOOL,             // bool
-    TOKEN_BYTE,             // i8
-    TOKEN_WORD,             // i16
-    TOKEN_DWORD,            // i32
-    TOKEN_QWORD,            // i64
+                            //
+    TOKEN_SBYTE,             // i8
+    TOKEN_SWORD,             // i16
+    TOKEN_SDWORD,            // i32
+    TOKEN_SQWORD,            // i64
 
     TOKEN_UBYTE,            // u8
     TOKEN_UWORD,            // u16
     TOKEN_UDWORD,           // u32
     TOKEN_UQWORD,           // u64
+                            //
     TOKEN_VOID,             // void
     TOKEN_FLOAT,            // f32
     TOKEN_DOUBLE,           // f64
@@ -66,10 +67,14 @@ enum TokenKind {
     TOKEN_GTE,              // >=
     TOKEN_EQEQ,             // ==
     TOKEN_NE,               // !=
+    TOKEN_SHL,              // <<
+    TOKEN_SHR,              // >>
 
     TOKEN_IDENTIFIER,
     TOKEN_NUM_REAL,
     TOKEN_NUM_INTEGER,
+    TOKEN_STRING_LIT,
+    TOKEN_CHAR_LIT,
 };
 
 #endif
